@@ -5,21 +5,24 @@ function randomPassword($length) {
     $password ='';
     $charlen = strlen($chars);
 
-    while (strlen($password) < $length) {
-        $password .= $chars[rand(0, $charLen - 1)];
+    while (strlen($password) < $_GET['length']) {
+        $password .= $chars[rand(0, $charlen - 1)];
+
     }
 
     return $password;
 
 }
 
-$length = 0;
+$length = $_GET['length'];
+$password = '';
+$message = '';
 
-if (isset($_GET['length']) && is_numeric($_GET['length'])) {
-    if ($length > 7) {
+if (isset($_GET['length']) && $_GET['length'] != '' && is_numeric($_GET['length'])) {
+    if ($length >= 8) {
         $password = randomPassword($length);
     } else {
-        $password = 'La password da generare deve essere di almeno 8 caratteri';
+        $message = 'La password da generare deve essere di almeno 8 caratteri';
     }
 }
 
@@ -51,7 +54,9 @@ if (isset($_GET['length']) && is_numeric($_GET['length'])) {
                         </div>
                     </div>
                 </form>
-                    
+                <?php if (isset($password)) { ?>
+                    <h1><?php echo $password ?></h1>
+                <?php } ?>
             </div>
         </div>
     </div>
