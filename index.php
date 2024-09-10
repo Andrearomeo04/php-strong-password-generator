@@ -6,15 +6,21 @@ function randomPassword($length) {
     $charlen = strlen($chars);
 
     while (strlen($password) < $length) {
-        $password .= $chars[rand(0, $charLength - 1)];
+        $password .= $chars[rand(0, $charLen - 1)];
     }
 
     return $password;
-    
+
 }
 
-if (isset($_GET['length']) && is_numeric($_GET['length'])) {
+$length = 0;
 
+if (isset($_GET['length']) && is_numeric($_GET['length'])) {
+    if ($length > 7) {
+        $password = randomPassword($length);
+    } else {
+        $password = 'La password da generare deve essere di almeno 8 caratteri';
+    }
 }
 
 ?>
@@ -32,7 +38,7 @@ if (isset($_GET['length']) && is_numeric($_GET['length'])) {
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form action="./index.php" method="GET">
+                <form action="./index.php" method="get">
                     <div class="row">
                         <div class="col-12">
                             <div class="form-floating my-3">
@@ -44,7 +50,8 @@ if (isset($_GET['length']) && is_numeric($_GET['length'])) {
                             <button type="submit" class="btn btn-primary">Genera</button>
                         </div>
                     </div>
-                </form>    
+                </form>
+                    
             </div>
         </div>
     </div>
