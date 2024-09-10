@@ -1,3 +1,24 @@
+<?php 
+
+function randomPassword($length) {
+    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{}|;:,.<>?';
+    $password ='';
+    $charlen = strlen($chars);
+
+    while (strlen($password) < $length) {
+        $password .= $chars[rand(0, $charLength - 1)];
+    }
+
+    return $password;
+    
+}
+
+if (isset($_GET['length']) && is_numeric($_GET['length'])) {
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +36,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-floating my-3">
-                                <input type="email" class="form-control w-25" id="floatingInput" placeholder="name@example.com">
+                                <input type="number" class="form-control w-25" id="length" name="length" min="8">
                                 <label for="floatingInput">Lunghezza password</label>
                             </div>
                         </div>
